@@ -14,6 +14,7 @@ import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import java.util.Collections;
+import java.util.Formatter;
 
 public abstract class LoanCalcBaseTest
 {
@@ -71,7 +72,7 @@ public abstract class LoanCalcBaseTest
 
     public void reportSauceLabsResult(WebDriver driver, boolean status)
     {
-        ((JavascriptExecutor)driver).executeScript("sauce:job-result=" + status);
+        ((JavascriptExecutor) driver).executeScript("sauce:job-result=" + status);
     }
 
     /**
@@ -98,6 +99,17 @@ public abstract class LoanCalcBaseTest
 
         // Execute the PUT request...
         request.put(entity);
+    }
+
+    public void log(LoanCalcBaseTest instance, String format, Object... args)
+    {
+        String mergedFormat = "[%s][%s] " + format;
+        Object[] mergedArgs = new Object[args.length + 2];
+        mergedArgs[0] = Thread.currentThread().getName();
+        mergedArgs[1] = instance.getClass().getSimpleName();
+        System.arraycopy(args, 0, mergedArgs, 2, args.length);
+
+        System.out.printf(mergedFormat, mergedArgs);
     }
 
     protected void log(LoanCalcBaseTest instance, String output)

@@ -1,16 +1,7 @@
 #!/bin/bash
 
-#CP=~/.m2/repository/org/testng/testng/6.13.1/testng-6.13.1.jar
-#CP=$CP:~/.m2/repository/com/beust/jcommander/1.72/jcommander-1.72.jar
-#CP=$CP:~/.m2/repository/org/testobject/testobject-appium-java-api/0.1.0
-#CP=$CP:~/.m2/repository/com/saucelabs/sauce_testng/2.1.23/sauce_testng-2.1.23.jar
-#CP=$CP:~/.m2/repository/com/saucelabs/saucerest/1.0.35/saucerest-1.0.35.jar
-#CP=$CP:target/classes
-#CP=$CP:target/test-classes
-
-
-CP=$CP:/Users/bmeyer/github/billmeyer/LoanCalcWebTest/target/test-classes
-CP=$CP:/Users/bmeyer/github/billmeyer/LoanCalcWebTest/target/classes
+CP=$CP:target/test-classes
+CP=$CP:target/classes
 CP=$CP:~/.m2/repository/org/testobject/testobject-appium-java-api/0.1.0/testobject-appium-java-api-0.1.0.jar
 CP=$CP:~/.m2/repository/io/appium/java-client/3.3.0/java-client-3.3.0.jar
 CP=$CP:~/.m2/repository/com/google/code/gson/gson/2.2.4/gson-2.2.4.jar

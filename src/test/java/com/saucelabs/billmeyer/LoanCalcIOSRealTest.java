@@ -44,20 +44,22 @@ public class LoanCalcIOSRealTest extends LoanCalcBaseTest
         caps.setCapability("platformName", "iOS");
         caps.setCapability("browserName", "Safari");
 
-        caps.setCapability("name", String.format("%s - %s [%s]", this.getClass().getSimpleName(), caps.getBrowserName(), new Date()));
+        Date startDate = new Date();
+        caps.setCapability("name", String.format("%s - %s [%s]", this.getClass().getSimpleName(), caps.getBrowserName(), startDate));
 
         URL url = new URL("https://us1.appium.testobject.com/wd/hub");
 
         driver = new IOSDriver(url, caps);
-        String sessionId = driver.getSessionId().toString();
-//        SauceREST sauceRest = new SauceREST(userName, accessKey);
-
-        System.out.printf("Test:       %s\n", caps.getCapability("name"));
-        System.out.printf("Session ID: %s\n", sessionId);
-
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
+        String sessionId = driver.getSessionId().toString();
+        log(this, "Started %s, session ID=%s.\n", startDate, sessionId);
+
         boolean result = testLoanCalc(driver);
+
+        Date stopDate = new Date();
+        log(this, "Completed %s, %d seconds.\n", stopDate, (stopDate.getTime() - startDate.getTime())/ 1000L);
+
         reportTestObjectResult(sessionId, result);
 
         driver.quit();

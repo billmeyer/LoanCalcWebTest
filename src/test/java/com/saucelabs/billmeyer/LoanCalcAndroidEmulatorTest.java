@@ -46,21 +46,22 @@ public class LoanCalcAndroidEmulatorTest extends LoanCalcBaseTest
         caps.setCapability("username", userName);
         caps.setCapability("accesskey", accessKey);
 
-        caps.setCapability("name", String.format("%s - %s [%s]",
-                this.getClass().getSimpleName(), caps.getBrowserName(), new Date()));
+        Date startDate = new Date();
+        caps.setCapability("name", String.format("%s - %s [%s]", this.getClass().getSimpleName(), caps.getBrowserName(), startDate));
 
         URL url = new URL("https://ondemand.saucelabs.com:443/wd/hub");
 
         driver = new AndroidDriver(url, caps);
-        String sessionId = driver.getSessionId().toString();
-//        SauceREST sauceRest = new SauceREST(userName, accessKey);
-
-        System.out.printf("Test:       %s\n", caps.getCapability("name"));
-        System.out.printf("Session ID: %s\n", sessionId);
-
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
+        String sessionId = driver.getSessionId().toString();
+        log(this, "Started %s, session ID=%s.\n", startDate, sessionId);
+
         boolean result = testLoanCalc(driver);
+
+        Date stopDate = new Date();
+        log(this, "Completed %s, %d seconds.\n", stopDate, (stopDate.getTime() - startDate.getTime())/ 1000L);
+
         reportSauceLabsResult(driver, result);
 
         driver.quit();
