@@ -1,0 +1,31 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<!-- TestNG Documentation: http://testng.org/doc/documentation-main.html -->
+<!-- Change "false" to "tests", "methods", "classes" or "instances" for running in parallel. See more details in the TestNG documentation. -->
+<!--<suite name="Parallel Run Suite" parallel="methods" thread-count="3" verbose="1">-->
+    <!--<test name="Android Test">-->
+        <!--<classes>-->
+            <!--<class name="com.saucelabs.billmeyer.LoanCalcAndroidEmulatorTest" />-->
+        <!--</classes>-->
+    <!--</test>-->
+    <!--<test name="Edge on Windows Test">-->
+        <!--<classes>-->
+            <!--<class name="com.saucelabs.billmeyer.LoanCalcEdgeOnWindowsTest" />-->
+        <!--</classes>-->
+    <!--</test>-->
+    <!--<test name="iOS Test">-->
+        <!--<classes>-->
+            <!--<class name="com.saucelabs.billmeyer.LoanCalcIOSSimulatorTest" />-->
+        <!--</classes>-->
+    <!--</test>-->
+<!--</suite>-->
+
+<suite name="Parallel Run Suite" parallel="methods" thread-count="30" verbose="10">
+<test name="All Tests">
+    <classes>
+        <class name="com.saucelabs.billmeyer.LoanCalcAndroidEmulatorTest" />
+        <class name="com.saucelabs.billmeyer.LoanCalcEdgeOnWindowsTest" />
+        <class name="com.saucelabs.billmeyer.LoanCalcIOSSimulatorTest" />
+    </classes>
+</test>
+</suite>
