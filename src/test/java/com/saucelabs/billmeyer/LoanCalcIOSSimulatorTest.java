@@ -33,60 +33,6 @@ public class LoanCalcIOSSimulatorTest extends LoanCalcBaseTest
     }
 
     @Test
-    public void testB1()
-    {
-        log(this, "Executing testB1");
-        log(this, "Waiting for 10 secs inside testB1");
-
-        try
-        {
-            Thread.sleep(10 * 1000);
-        }
-        catch (InterruptedException e)
-        {
-            e.printStackTrace();
-        }
-
-        log(this, "Done waiting for 10 secs inside testB1");
-    }
-
-    @Test
-    public void testB2()
-    {
-        log(this, "Executing testB2");
-        log(this, "Waiting for 10 secs inside testB2");
-
-        try
-        {
-            Thread.sleep(10 * 1000);
-        }
-        catch (InterruptedException e)
-        {
-            e.printStackTrace();
-        }
-
-        log(this, "Done waiting for 10 secs inside testB2");
-    }
-
-    @Test
-    public void testB3()
-    {
-        log(this, "Executing testB3");
-        log(this, "Waiting for 10 secs inside testB3");
-
-        try
-        {
-            Thread.sleep(10 * 1000);
-        }
-        catch (InterruptedException e)
-        {
-            e.printStackTrace();
-        }
-
-        log(this, "Done waiting for 10 secs inside testB3");
-    }
-
-    //    @Test
     public void testIOS() throws Exception
     {
         DesiredCapabilities caps = DesiredCapabilities.android();

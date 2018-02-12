@@ -1,9 +1,9 @@
 package com.saucelabs.billmeyer;
 
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
+import org.testng.Assert;
 
 public abstract class LoanCalcBaseTest
 {
@@ -57,6 +57,6 @@ public abstract class LoanCalcBaseTest
 
     protected void log(LoanCalcBaseTest instance, String output)
     {
-        System.out.printf("[%s][%s] %s\n", instance.getClass().getSimpleName(), Thread.currentThread().getName(), output);
+        System.out.printf("[%s][%s] %s\n", Thread.currentThread().getName(), instance.getClass().getSimpleName(), output);
     }
 }

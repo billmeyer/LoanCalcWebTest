@@ -34,60 +34,6 @@ public class LoanCalcEdgeOnWindowsTest extends LoanCalcBaseTest
     }
 
     @Test
-    public void testA1()
-    {
-        log(this,"Executing testA1");
-        log(this, "Waiting for 10 secs inside testA1");
-
-        try
-        {
-            Thread.sleep(10*1000);
-        }
-        catch (InterruptedException e)
-        {
-            e.printStackTrace();
-        }
-
-        log(this, "Done waiting for 10 secs inside testA1");
-    }
-
-    @Test
-    public void testA2()
-    {
-        log(this,"Executing testA2");
-        log(this, "Waiting for 10 secs inside testA2");
-
-        try
-        {
-            Thread.sleep(10*1000);
-        }
-        catch (InterruptedException e)
-        {
-            e.printStackTrace();
-        }
-
-        log(this, "Done waiting for 10 secs inside testA2");
-    }
-
-    @Test
-    public void testA3()
-    {
-        log(this,"Executing testA3");
-        log(this, "Waiting for 10 secs inside testA3");
-
-        try
-        {
-            Thread.sleep(10*1000);
-        }
-        catch (InterruptedException e)
-        {
-            e.printStackTrace();
-        }
-
-        log(this, "Done waiting for 10 secs inside testA3");
-    }
-
-    //    @Test
     public void testEdgeOnWindows() throws Exception
     {
         DesiredCapabilities caps = DesiredCapabilities.edge();

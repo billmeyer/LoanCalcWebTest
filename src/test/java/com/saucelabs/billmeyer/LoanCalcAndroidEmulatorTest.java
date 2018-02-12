@@ -4,6 +4,7 @@ import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import java.net.URL;
 import java.util.Date;
@@ -23,7 +24,7 @@ public class LoanCalcAndroidEmulatorTest extends LoanCalcBaseTest
     @AfterMethod
     public void tearDown() throws Exception
     {
-        driver.quit();
+        if (driver != null) driver.quit();
         String verificationErrorString = verificationErrors.toString();
         if (!"".equals(verificationErrorString))
         {
@@ -31,7 +32,7 @@ public class LoanCalcAndroidEmulatorTest extends LoanCalcBaseTest
         }
     }
 
-//    @Test
+    @Test
     public void testAndroid() throws Exception
     {
         DesiredCapabilities caps = DesiredCapabilities.android();
