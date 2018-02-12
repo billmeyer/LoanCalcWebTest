@@ -10,7 +10,7 @@
     <!--</test>-->
     <!--<test name="Edge on Windows Test">-->
         <!--<classes>-->
-            <!--<class name="com.saucelabs.billmeyer.LoanCalcEdgeOnWindowsTest"/>-->
+            <!--<class name="com.saucelabs.billmeyer.LoanCalcWindowsTest"/>-->
         <!--</classes>-->
     <!--</test>-->
     <!--<test name="iOS Test">-->
@@ -23,9 +23,9 @@
         <classes>
             <class name="com.saucelabs.billmeyer.LoanCalcAndroidEmulatorTest"/>
             <class name="com.saucelabs.billmeyer.LoanCalcAndroidRealTest"/>
-            <class name="com.saucelabs.billmeyer.LoanCalcEdgeOnWindowsTest"/>
             <class name="com.saucelabs.billmeyer.LoanCalcIOSRealTest"/>
             <class name="com.saucelabs.billmeyer.LoanCalcIOSSimulatorTest"/>
+            <class name="com.saucelabs.billmeyer.LoanCalcWindowsTest"/>
         </classes>
     </test>
 

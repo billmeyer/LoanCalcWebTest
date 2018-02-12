@@ -12,10 +12,8 @@ import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.fail;
 
-public class LoanCalcEdgeOnWindowsTest extends LoanCalcBaseTest
+public class LoanCalcWindowsTest extends LoanCalcBaseTest
 {
-    protected RemoteWebDriver driver;
-
     @BeforeMethod
     public void setUp() throws Exception
     {
@@ -24,8 +22,6 @@ public class LoanCalcEdgeOnWindowsTest extends LoanCalcBaseTest
     @AfterMethod
     public void tearDown() throws Exception
     {
-        if (driver != null) driver.quit();
-
         String verificationErrorString = verificationErrors.toString();
         if (!"".equals(verificationErrorString))
         {
@@ -34,7 +30,41 @@ public class LoanCalcEdgeOnWindowsTest extends LoanCalcBaseTest
     }
 
     @Test
-    public void testEdgeOnWindows() throws Exception
+    public void testChrome() throws Exception
+    {
+        DesiredCapabilities caps = DesiredCapabilities.chrome();
+        caps.setCapability("platform", "Windows 10");
+        caps.setCapability("version", "57");
+        caps.setCapability("recordVideo", "true");
+        caps.setCapability("recordScreenshots", "true");
+        caps.setCapability("screenResolution", "1920x1080");
+
+        caps.setCapability("username", userName);
+        caps.setCapability("accesskey", accessKey);
+
+        Date startDate = new Date();
+        caps.setCapability("name", String.format("%s - %s [%s]", this.getClass().getSimpleName(), caps.getBrowserName(), startDate));
+
+        URL url = new URL("https://ondemand.saucelabs.com:443/wd/hub");
+
+        RemoteWebDriver driver = new RemoteWebDriver(url, caps);
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+        String sessionId = driver.getSessionId().toString();
+        log(this, "Started %s, session ID=%s.\n", startDate, sessionId);
+
+        boolean result = testLoanCalc(driver);
+
+        Date stopDate = new Date();
+        log(this, "Completed %s, %d seconds.\n", stopDate, (stopDate.getTime() - startDate.getTime())/ 1000L);
+
+        reportSauceLabsResult(driver, result);
+
+        driver.quit();
+    }
+
+    @Test
+    public void testEdge() throws Exception
     {
         DesiredCapabilities caps = DesiredCapabilities.edge();
         caps.setCapability("platform", "Windows 10");
@@ -51,7 +81,7 @@ public class LoanCalcEdgeOnWindowsTest extends LoanCalcBaseTest
 
         URL url = new URL("https://ondemand.saucelabs.com:443/wd/hub");
 
-        driver = new RemoteWebDriver(url, caps);
+        RemoteWebDriver driver = new RemoteWebDriver(url, caps);
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
         String sessionId = driver.getSessionId().toString();
