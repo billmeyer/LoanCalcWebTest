@@ -22,7 +22,9 @@
     <test name="All Classes Test">
         <classes>
             <class name="com.saucelabs.billmeyer.LoanCalcAndroidEmulatorTest"/>
+            <class name="com.saucelabs.billmeyer.LoanCalcAndroidRealTest"/>
             <class name="com.saucelabs.billmeyer.LoanCalcEdgeOnWindowsTest"/>
+            <class name="com.saucelabs.billmeyer.LoanCalcIOSRealTest"/>
             <class name="com.saucelabs.billmeyer.LoanCalcIOSSimulatorTest"/>
         </classes>
     </test>

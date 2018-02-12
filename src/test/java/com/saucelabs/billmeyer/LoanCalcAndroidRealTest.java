@@ -1,6 +1,6 @@
 package com.saucelabs.billmeyer;
 
-import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -12,9 +12,9 @@ import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.fail;
 
-public class LoanCalcIOSSimulatorTest extends LoanCalcBaseTest
+public class LoanCalcAndroidRealTest extends LoanCalcBaseTest
 {
-    protected IOSDriver driver;
+    protected AndroidDriver driver;
 
     @BeforeMethod
     public void setUp() throws Exception
@@ -33,24 +33,23 @@ public class LoanCalcIOSSimulatorTest extends LoanCalcBaseTest
     }
 
     @Test
-    public void testIOSonSimulator() throws Exception
+    public void testAndroidonRealDevice() throws Exception
     {
         DesiredCapabilities caps = DesiredCapabilities.android();
+        caps.setCapability("testobject_api_key", "2FD1A02F77F44BDE917269A9C7D1877B");
         caps.setCapability("appiumVersion", "1.7.2");
-        caps.setCapability("deviceName", "iPhone X Simulator");
+        caps.setCapability("deviceName","Google Pixel 2 XL");
         caps.setCapability("deviceOrientation", "portrait");
-        caps.setCapability("platformVersion", "11.2");
-        caps.setCapability("platformName", "iOS");
-        caps.setCapability("browserName", "Safari");
+        caps.setCapability("platformVersion", "8.0");
+        caps.setCapability("platformName","Android");
+        caps.setCapability("browserName", "Chrome");
 
-        caps.setCapability("username", userName);
-        caps.setCapability("accesskey", accessKey);
+        caps.setCapability("name", String.format("%s - %s [%s]",
+                this.getClass().getSimpleName(), caps.getBrowserName(), new Date()));
 
-        caps.setCapability("name", String.format("%s - %s [%s]", this.getClass().getSimpleName(), caps.getBrowserName(), new Date()));
+        URL url = new URL("https://us1.appium.testobject.com/wd/hub");
 
-        URL url = new URL("https://ondemand.saucelabs.com:443/wd/hub");
-
-        driver = new IOSDriver(url, caps);
+        driver = new AndroidDriver(url, caps);
         String sessionId = driver.getSessionId().toString();
 //        SauceREST sauceRest = new SauceREST(userName, accessKey);
 
@@ -60,7 +59,7 @@ public class LoanCalcIOSSimulatorTest extends LoanCalcBaseTest
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
         boolean result = testLoanCalc(driver);
-        reportSauceLabsResult(driver, result);
+        reportTestObjectResult(sessionId, result);
 
         driver.quit();
     }

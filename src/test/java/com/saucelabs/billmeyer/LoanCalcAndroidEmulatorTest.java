@@ -33,19 +33,18 @@ public class LoanCalcAndroidEmulatorTest extends LoanCalcBaseTest
     }
 
     @Test
-    public void testAndroid() throws Exception
+    public void testAndroidonEmulator() throws Exception
     {
         DesiredCapabilities caps = DesiredCapabilities.android();
-        caps.setCapability("testobject_api_key", "2FD1A02F77F44BDE917269A9C7D1877B");
-        caps.setCapability("username", userName);
-        caps.setCapability("accesskey", accessKey);
-
         caps.setCapability("appiumVersion", "1.7.2");
         caps.setCapability("deviceName","Android GoogleAPI Emulator");
         caps.setCapability("deviceOrientation", "portrait");
         caps.setCapability("platformVersion", "7.0");
         caps.setCapability("platformName","Android");
         caps.setCapability("browserName", "Chrome");
+
+        caps.setCapability("username", userName);
+        caps.setCapability("accesskey", accessKey);
 
         caps.setCapability("name", String.format("%s - %s [%s]",
                 this.getClass().getSimpleName(), caps.getBrowserName(), new Date()));
@@ -61,7 +60,8 @@ public class LoanCalcAndroidEmulatorTest extends LoanCalcBaseTest
 
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
-        testLoanCalc(driver);
+        boolean result = testLoanCalc(driver);
+        reportSauceLabsResult(driver, result);
 
         driver.quit();
     }

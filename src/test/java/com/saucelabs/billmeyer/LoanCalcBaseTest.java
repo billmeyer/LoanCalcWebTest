@@ -1,9 +1,19 @@
 package com.saucelabs.billmeyer;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
+
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.Invocation;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+import java.util.Collections;
 
 public abstract class LoanCalcBaseTest
 {
@@ -13,7 +23,7 @@ public abstract class LoanCalcBaseTest
     protected String userName = System.getenv("SAUCE_USERNAME");
     protected String accessKey = System.getenv("SAUCE_ACCESS_KEY");
 
-    protected void testLoanCalc(WebDriver driver)
+    protected boolean testLoanCalc(RemoteWebDriver driver)
     {
         try
         {
@@ -48,11 +58,46 @@ public abstract class LoanCalcBaseTest
             Assert.assertEquals("$250.24", monthlyPayment);
             Assert.assertEquals("$2,301.23", totalInterest);
             Assert.assertEquals("$19,264.65", totalCost);
+
+            return true;
         }
         catch (WebDriverException e)
         {
             e.printStackTrace();
         }
+
+        return false;
+    }
+
+    public void reportSauceLabsResult(WebDriver driver, boolean status)
+    {
+        ((JavascriptExecutor)driver).executeScript("sauce:job-result=" + status);
+    }
+
+    /**
+     * Uses the Appium V2 RESTful API to report test result status to the Sauce Labs dashboard.
+     *
+     * @param sessionId The session ID we want to set the status for
+     * @param status    TRUE if the test was successful, FALSE otherwise
+     * @see https://api.testobject.com/#!/Appium_Watcher_API/updateTest
+     */
+    public void reportTestObjectResult(String sessionId, boolean status)
+    {
+        // The Appium REST Api expects JSON payloads...
+        MediaType[] mediaType = new MediaType[]{MediaType.APPLICATION_JSON_TYPE};
+
+        // Construct the new REST client...
+        Client client = ClientBuilder.newClient();
+        WebTarget resource = client.target("https://app.testobject.com/api/rest/v2/appium");
+
+        // Construct the REST body payload...
+        Entity entity = Entity.json(Collections.singletonMap("passed", status));
+
+        // Build a PUT request to /v2/appium/session/{:sessionId}/test
+        Invocation.Builder request = resource.path("session").path(sessionId).path("test").request(mediaType);
+
+        // Execute the PUT request...
+        request.put(entity);
     }
 
     protected void log(LoanCalcBaseTest instance, String output)
