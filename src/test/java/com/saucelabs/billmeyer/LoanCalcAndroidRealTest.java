@@ -40,7 +40,7 @@ public class LoanCalcAndroidRealTest extends LoanCalcBaseTest
         caps.setCapability("appiumVersion", "1.7.2");
         caps.setCapability("deviceName","Google Pixel 2 XL");
         caps.setCapability("deviceOrientation", "portrait");
-        caps.setCapability("platformVersion", "8.0");
+        caps.setCapability("platformVersion", "8.1");
         caps.setCapability("platformName","Android");
         caps.setCapability("browserName", "Chrome");
 
