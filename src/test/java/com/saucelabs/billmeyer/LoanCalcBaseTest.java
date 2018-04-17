@@ -14,7 +14,6 @@ import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import java.util.Collections;
-import java.util.Formatter;
 
 public abstract class LoanCalcBaseTest
 {
@@ -30,6 +29,7 @@ public abstract class LoanCalcBaseTest
         {
             driver.get(baseUrl);
 
+            ///////////////////////////////////////////////////////////////////
             // clear all the input fields...
             driver.findElement(By.id("loanAmount")).clear();
             driver.findElement(By.id("interest")).clear();
@@ -39,6 +39,7 @@ public abstract class LoanCalcBaseTest
             driver.findElement(By.id("tradeIn")).clear();
             driver.findElement(By.id("fees")).clear();
 
+            ///////////////////////////////////////////////////////////////////
             // populate all the input fields with test data...
             driver.findElement(By.id("loanAmount")).sendKeys("15670.23");
             driver.findElement(By.id("interest")).sendKeys("6.75");
@@ -48,13 +49,19 @@ public abstract class LoanCalcBaseTest
             driver.findElement(By.id("tradeIn")).sendKeys("3500.00");
             driver.findElement(By.id("fees")).sendKeys("350.00");
 
+            ///////////////////////////////////////////////////////////////////
+            // Calculate the loan...
             driver.findElement(By.id("calculate")).click();
 
+            ///////////////////////////////////////////////////////////////////
+            // Read the computed terms of the loan...
             String loanTotal = driver.findElement(By.id("loanTotal")).getAttribute("value");
             String monthlyPayment = driver.findElement(By.id("monthlyPayment")).getAttribute("value");
             String totalInterest = driver.findElement(By.id("totalInterest")).getAttribute("value");
             String totalCost = driver.findElement(By.id("totalCost")).getAttribute("value");
 
+            ///////////////////////////////////////////////////////////////////
+            // Verify assumptions...
             Assert.assertEquals("$15,014.65", loanTotal);
             Assert.assertEquals("$250.24", monthlyPayment);
             Assert.assertEquals("$2,301.23", totalInterest);

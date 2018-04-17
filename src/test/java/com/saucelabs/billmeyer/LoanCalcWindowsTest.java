@@ -68,7 +68,7 @@ public class LoanCalcWindowsTest extends LoanCalcBaseTest
     {
         DesiredCapabilities caps = DesiredCapabilities.edge();
         caps.setCapability("platform", "Windows 10");
-        caps.setCapability("version", "14.14393");
+        caps.setCapability("version", "16.16299");
         caps.setCapability("recordVideo", "true");
         caps.setCapability("recordScreenshots", "true");
         caps.setCapability("screenResolution", "1280x800");

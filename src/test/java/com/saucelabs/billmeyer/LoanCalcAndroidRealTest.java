@@ -37,10 +37,12 @@ public class LoanCalcAndroidRealTest extends LoanCalcBaseTest
     {
         DesiredCapabilities caps = DesiredCapabilities.android();
         caps.setCapability("testobject_api_key", "2FD1A02F77F44BDE917269A9C7D1877B");
-        caps.setCapability("appiumVersion", "1.7.2");
-        caps.setCapability("deviceName","Google Pixel 2 XL");
+        caps.setCapability("appiumVersion", "1.7.2-cd-2.37");
+//        caps.setCapability("deviceName","Google Pixel 2");
+//        caps.setCapability("platformVersion", "8.1");
+        caps.setCapability("deviceName", "Samsung Galaxy S9 Plus");
+        caps.setCapability("platformVersion", "8.0");
         caps.setCapability("deviceOrientation", "portrait");
-        caps.setCapability("platformVersion", "8.1");
         caps.setCapability("platformName","Android");
         caps.setCapability("browserName", "Chrome");
 

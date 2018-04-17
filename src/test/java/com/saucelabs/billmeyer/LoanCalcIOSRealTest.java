@@ -35,12 +35,12 @@ public class LoanCalcIOSRealTest extends LoanCalcBaseTest
     @Test
     public void testIOSonRealDevice() throws Exception
     {
-        DesiredCapabilities caps = DesiredCapabilities.android();
+        DesiredCapabilities caps = DesiredCapabilities.safari();
         caps.setCapability("testobject_api_key", "2FD1A02F77F44BDE917269A9C7D1877B");
         caps.setCapability("appiumVersion", "1.7.2");
         caps.setCapability("deviceName", "iPhone X");
         caps.setCapability("deviceOrientation", "portrait");
-        caps.setCapability("platformVersion", "11.2.5");
+        caps.setCapability("platformVersion", "11");
         caps.setCapability("platformName", "iOS");
         caps.setCapability("browserName", "Safari");
 
