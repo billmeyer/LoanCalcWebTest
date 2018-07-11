@@ -34,10 +34,11 @@ public class LoanCalcWindowsTest extends LoanCalcBaseTest
     {
         DesiredCapabilities caps = DesiredCapabilities.chrome();
         caps.setCapability("platform", "Windows 10");
-        caps.setCapability("version", "57");
+        caps.setCapability("version", "67");
         caps.setCapability("recordVideo", "true");
         caps.setCapability("recordScreenshots", "true");
         caps.setCapability("screenResolution", "1920x1080");
+        caps.setCapability("extendedDebugging", true);
 
         caps.setCapability("username", userName);
         caps.setCapability("accesskey", accessKey);
