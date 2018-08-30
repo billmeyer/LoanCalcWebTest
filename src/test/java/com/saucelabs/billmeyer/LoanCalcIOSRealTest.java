@@ -36,9 +36,12 @@ public class LoanCalcIOSRealTest extends LoanCalcBaseTest
     public void testIOSonRealDevice() throws Exception
     {
         DesiredCapabilities caps = DesiredCapabilities.safari();
-        caps.setCapability("testobject_api_key", "2FD1A02F77F44BDE917269A9C7D1877B");
-        caps.setCapability("appiumVersion", "1.7.2");
-        caps.setCapability("deviceName", "iPhone X");
+        caps.setCapability("testobject_api_key", toAccessKey);
+
+        // Any search strings used on https://saucelabs.com/devices to filter devices can be used to specify the 'deviceName'.  The first
+        // available device matching the filter will be allocated for the test.
+//        caps.setCapability("deviceName", "iPhone X");
+
         caps.setCapability("deviceOrientation", "portrait");
         caps.setCapability("platformVersion", "11");
         caps.setCapability("platformName", "iOS");

@@ -36,11 +36,12 @@ public class LoanCalcAndroidRealTest extends LoanCalcBaseTest
     public void testAndroidonRealDevice() throws Exception
     {
         DesiredCapabilities caps = DesiredCapabilities.android();
-        caps.setCapability("testobject_api_key", "2FD1A02F77F44BDE917269A9C7D1877B");
-        caps.setCapability("appiumVersion", "1.7.2-cd-2.37");
-//        caps.setCapability("deviceName","Google Pixel 2");
-//        caps.setCapability("platformVersion", "8.1");
-        caps.setCapability("deviceName", "Samsung Galaxy S9 Plus");
+        caps.setCapability("testobject_api_key", toAccessKey);
+
+        // Any search strings used on https://saucelabs.com/devices to filter devices can be used to specify the 'deviceName'.  The first
+        // available device matching the filter will be allocated for the test.
+//        caps.setCapability("deviceName", "Samsung Galaxy");
+
         caps.setCapability("platformVersion", "8.0");
         caps.setCapability("deviceOrientation", "portrait");
         caps.setCapability("platformName","Android");

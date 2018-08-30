@@ -36,7 +36,7 @@ public class LoanCalcAndroidEmulatorTest extends LoanCalcBaseTest
     public void testAndroidonEmulator() throws Exception
     {
         DesiredCapabilities caps = DesiredCapabilities.android();
-        caps.setCapability("appiumVersion", "1.7.2");
+//        caps.setCapability("appiumVersion", "1.7.2");
         caps.setCapability("deviceName","Android GoogleAPI Emulator");
         caps.setCapability("deviceOrientation", "portrait");
         caps.setCapability("platformVersion", "7.0");

@@ -22,6 +22,7 @@ public abstract class LoanCalcBaseTest
 
     protected String userName = System.getenv("SAUCE_USERNAME");
     protected String accessKey = System.getenv("SAUCE_ACCESS_KEY");
+    protected String toAccessKey = System.getenv("TESTOBJECT_API_KEY");
 
     protected boolean testLoanCalc(RemoteWebDriver driver)
     {
