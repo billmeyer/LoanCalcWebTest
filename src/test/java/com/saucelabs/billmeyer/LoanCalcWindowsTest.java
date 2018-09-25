@@ -44,7 +44,8 @@ public class LoanCalcWindowsTest extends LoanCalcBaseTest
         caps.setCapability("accesskey", accessKey);
 
         Date startDate = new Date();
-        caps.setCapability("name", String.format("%s - %s [%s]", this.getClass().getSimpleName(), caps.getBrowserName(), startDate));
+//        caps.setCapability("name", String.format("%s - %s [%s]", this.getClass().getSimpleName(), caps.getBrowserName(), startDate));
+        caps.setCapability("name", String.format("%s - %s", this.getClass().getSimpleName(), caps.getBrowserName()));
 
         URL url = new URL("https://ondemand.saucelabs.com:443/wd/hub");
 

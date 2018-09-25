@@ -48,7 +48,8 @@ public class LoanCalcIOSRealTest extends LoanCalcBaseTest
         caps.setCapability("browserName", "Safari");
 
         Date startDate = new Date();
-        caps.setCapability("name", String.format("%s - %s [%s]", this.getClass().getSimpleName(), caps.getBrowserName(), startDate));
+//        caps.setCapability("name", String.format("%s - %s [%s]", this.getClass().getSimpleName(), caps.getBrowserName(), startDate));
+        caps.setCapability("name", String.format("%s - %s", this.getClass().getSimpleName(), caps.getBrowserName()));
 
         URL url = new URL("https://us1.appium.testobject.com/wd/hub");
 
